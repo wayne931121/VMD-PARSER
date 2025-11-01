@@ -132,6 +132,8 @@ https://note.com/gabugabu_megane/n/n21702f43d165
 
 https://note.com/fantom1x/n/nca0bf10ce11f
 
+https://learnmmd.com/Make-Your-First-Model-Using-Blender-by-Mae-Blythe/Make-a-Model-Part-15/index.html
+
 tool
 
 https://github.com/wayne931121/EncodingExplosion
