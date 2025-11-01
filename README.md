@@ -50,10 +50,12 @@ MMD Bones Map:
 グルーブ
 センター
 上半身
+下半身
 首
 頭
 左目
-下半身
+両目
+右目
 左肩
 左腕
 左ひじ
@@ -73,10 +75,15 @@ MMD Bones Map:
 左小指２
 左小指３
 左足
+左足D
 左ひざ
+左ひざD
 左足首
-両目
-右目
+左足首D
+左足先
+左足先EX
+左足ＩＫ
+左つま先ＩＫ
 右肩
 右腕
 右ひじ
@@ -96,21 +103,26 @@ MMD Bones Map:
 右小指２
 右小指３
 右足
+右足D
 右ひざ
+右ひざD
 右足首
-左足ＩＫ
-左つま先ＩＫ
+右足首D
+右足先
+右足先EX
 右足ＩＫ
 右つま先ＩＫ
 ```
 
-reference
+code reference
 
 https://github.com/syoyo/MMDLoader/blob/master/vmd_reader.cc
 
 https://github.com/59naga/vpvp-vmd/blob/master/src/reader.coffee
 
 https://github.com/errno-mmd/VMD-Lifting/blob/master/applications/VmdWriter.py
+
+pmx bones name reference
 
 https://learnmmd.com/http:/learnmmd.com/mmd-bone-reference-charts/
 
