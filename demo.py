@@ -5,7 +5,7 @@ vmd = vmdread("b.vmd")
 motion = motionreader(vmd)
 ik = ikreader(vmd["ik"])
 
-WriteVMD("example.vmd", motion.copy())
+WriteVMD("example.vmd", motion)
 
 
 
@@ -24,3 +24,4 @@ print()
 print(ik)
 
 print(ik)
+
