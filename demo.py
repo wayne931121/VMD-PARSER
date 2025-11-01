@@ -1,14 +1,15 @@
 from vmd import *
+import copy
 
 vmd = vmdread("b.vmd")
 motion = motionreader(vmd)
 ik = ikreader(vmd["ik"])
 
-WriteVMD("example.vmd", motion)
+#WriteVMD("example.vmd", motion.copy())
 
 
 
-vmdc = vmd.copy()
+vmdc = copy.deepcopy(vmd)
 vmdc["motion"] = vmdc["motion"][:32]
 vmdc["morph"] = vmdc["morph"][:32]
 

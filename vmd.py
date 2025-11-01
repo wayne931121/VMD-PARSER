@@ -1,4 +1,5 @@
 import struct
+import copy
 
 def vmdread(file):
     result = {}
@@ -85,10 +86,11 @@ def motionreader(parser):
         result[-1]["position"] = parser['motion'][i+19:i+31]
         result[-1]["quaternion"] = parser['motion'][i+31:i+47]
         result[-1]["bezier"] = parser['motion'][i+47:i+111]
+        
         try:
             result[-1]["name"] = result[-1]["name"].decode("cp932")
-        except:
-            pass
+        except Exception as e:
+            print(result[-1]["name"],e)
         
         result[-1]["frame"] = int.from_bytes(result[-1]["frame"],"little")
         
@@ -97,7 +99,6 @@ def motionreader(parser):
         
         x,y,z,w = [struct.unpack('f', result[-1]["quaternion"][i:i+4])[0] for i in range(0,16,4)]
         result[-1]["quaternion"] = [x,y,z,w]
-        
     return result
 
 def ikreader(ik_):
@@ -124,6 +125,7 @@ def ikreader(ik_):
     return totalresult
 
 def WriteVMD(filename, motions): #only write motions
+    motions = copy.deepcopy(motions)
     fout = open(filename, "wb")
     fout.write(b'Vocaloid Motion Data 0002\x00\x00\x00\x00\x00') #30 bytes header
     fout.write(b'Model Name          ') #20 bytes name
