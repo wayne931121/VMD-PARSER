@@ -54,3 +54,6 @@ def motionreader(parser):
 
 vmd = vmdread("13.vmd")
 motion = motionreader(vmd)
+
+print(vmd)
+print(motion)
