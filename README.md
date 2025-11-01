@@ -60,6 +60,10 @@ vmd = vmdread("13.vmd")
 motion = motionreader(vmd)
 ```
 
+output:
+
+https://github.com/wayne931121/VMD-PARSER/blob/main/Example%20Output.txt
+
 reference
 
 https://github.com/syoyo/MMDLoader/blob/master/vmd_reader.cc
