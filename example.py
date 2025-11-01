@@ -108,10 +108,14 @@ def ikreader(ik):
         
     return result
 
-vmd = vmdread("13.vmd")
+vmd = vmdread("b.vmd")
 motion = motionreader(vmd)
 ik = ikreader(vmd["ik"])
 
-print(vmd)
-print(motion)
+vmdc = vmd.copy()
+vmdc["motion"] = vmdc["motion"][:512]
+vmdc["morph"] = vmdc["morph"][:512]
+
+print(vmdc)
+print(motion[:10])
 print(ik)
