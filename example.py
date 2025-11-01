@@ -123,9 +123,35 @@ def ikreader(ik_):
         
     return totalresult
 
+def WriteVMD(filename, motions): #only write motions
+    fout = open(filename, "wb")
+    fout.write(b'Vocaloid Motion Data 0002\x00\x00\x00\x00\x00') #30 bytes header
+    fout.write(b'Model Name          ') #20 bytes name
+    fout.write( struct.pack('L', len(motions) ) ) # 4 bytes motion count
+    for i in motions:
+        i["name"] = i["name"].encode("cp932")
+        fout.write(  i["name"]  +  b"\x00" * ( 15 - len( i["name"] ) ) ) #15 bytes
+        fout.write( struct.pack( 'L', i["frame"] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["position"][0] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["position"][1] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["position"][2] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["quaternion"][0] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["quaternion"][1] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["quaternion"][2] ) ) #4 bytes
+        fout.write( struct.pack( 'f', i["quaternion"][3] ) ) #4 bytes
+        fout.write( b"\x00" * 64 ) #64 bytes
+    fout.write( struct.pack('L', 0) ) #4 bytes morph
+    fout.write( struct.pack('L', 0) ) #4 bytes camera
+    fout.write( struct.pack('L', 0) ) #4 bytes light
+    fout.write( struct.pack('L', 0) ) #4 bytes shadow
+    fout.write( struct.pack('L', 0) ) #4 bytes ik
+    fout.close()
+
 vmd = vmdread("b.vmd")
 motion = motionreader(vmd)
 ik = ikreader(vmd["ik"])
+
+WriteVMD("example.vmd", motion)
 
 vmdc = vmd.copy()
 vmdc["motion"] = vmdc["motion"][:32]
