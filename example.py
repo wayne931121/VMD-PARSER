@@ -45,6 +45,8 @@ def motionreader(parser):
         result[-1]["frame"] = int.from_bytes(result[-1]["frame"],"little")
         x,y,z = [struct.unpack('f', result[-1]["position"][i:i+4])[0] for i in range(0,12,4)]
         result[-1]["position"] = [x,y,z]
+        x,y,z,w = [struct.unpack('f', result[-1]["quaternion"][i:i+4])[0] for i in range(0,16,4)]
+        result[-1]["quaternion"] = [x,y,z,w]
     return result
 
 def ikreader(ik):
