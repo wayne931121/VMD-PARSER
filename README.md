@@ -38,11 +38,11 @@ def motionreader(parser):
     result = []
     for i in range(0,len(parser['motion']),111):
         result.append({})
-        result[-1]["name"] = parser['motion'][:15]
-        result[-1]["frame"] = parser['motion'][15:19]
-        result[-1]["position"] = parser['motion'][19:31]
-        result[-1]["quaternion"] = parser['motion'][31:47]
-        result[-1]["bezier"] = parser['motion'][47:111]
+        result[-1]["name"] = parser['motion'][i+0:i+15]
+        result[-1]["frame"] = parser['motion'][i+15:i+19]
+        result[-1]["position"] = parser['motion'][i+19:i+31]
+        result[-1]["quaternion"] = parser['motion'][i+31:i+47]
+        result[-1]["bezier"] = parser['motion'][i+47:i+111]
     return result
 
 vmd = vmdread("13.vmd")
