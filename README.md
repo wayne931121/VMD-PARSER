@@ -1,5 +1,5 @@
 # VMD-PARSER
-python read vmd
+python read and write vmd
 
 code:
 
