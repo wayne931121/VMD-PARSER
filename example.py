@@ -14,19 +14,13 @@ def vmdread(file):
     shadowcount = int.from_bytes(f.read(4),"little") ; result["shadowcount"] = shadowcount
     shadow = f.read(shadowcount*61) ; result["shadow"] = shadow
     ikcount = int.from_bytes(f.read(4),"little")
-    if ikcount>0:
-        iknumber = int.from_bytes(f.read(5),"little")
-    else:
-        iknumber = 0
-    ikbyte= (9+21*iknumber)
+    ikshow = int.from_bytes(f.read(1),"little")
+    iknumber = int.from_bytes(f.read(4),"little")
+    ik = f.read(iknumber*21)
     result["ikcount"] = ikcount
-    result["ikbyte"] = ikbyte
+    result["ikshow"] = ikshow
     result["iknumber"] = iknumber
-    try:
-        ik = f.read(ikcount*ikbyte) ; result["ik"] = ik
-    except MemoryError:
-        result["ik"] = "this vmd ik not for this script"
-        pass
+    result["ik"] = ik
     end = f.read(-1) ; result["end"] = end
     try:
         result["name"] = result["name"].decode("cp932")
