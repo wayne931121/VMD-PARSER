@@ -1,3 +1,5 @@
+import struct
+
 def vmdread(file):
     result = {}
     f = open(file,"rb")
@@ -67,7 +69,7 @@ def vmdread(file):
     
     return result
 
-import struct
+
 def motionreader(parser):
     result = []
     for i in range(0,len(parser['motion']),111):
