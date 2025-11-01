@@ -44,6 +44,66 @@ ik
 PS C:\Users\原神\Desktop>
 ```
 
+MMD Bones Map:
+```
+全ての親
+グルーブ
+センター
+上半身
+首
+頭
+左目
+下半身
+左肩
+左腕
+左ひじ
+左手首
+左親指１
+左親指２
+左人指１
+左人指２
+左人指３
+左中指１
+左中指２
+左中指３
+左薬指１
+左薬指２
+左薬指３
+左小指１
+左小指２
+左小指３
+左足
+左ひざ
+左足首
+両目
+右目
+右肩
+右腕
+右ひじ
+右手首
+右親指１
+右親指２
+右人指１
+右人指２
+右人指３
+右中指１
+右中指２
+右中指３
+右薬指１
+右薬指２
+右薬指３
+右小指１
+右小指２
+右小指３
+右足
+右ひざ
+右足首
+左足ＩＫ
+左つま先ＩＫ
+右足ＩＫ
+右つま先ＩＫ
+```
+
 reference
 
 https://github.com/syoyo/MMDLoader/blob/master/vmd_reader.cc
@@ -51,6 +111,14 @@ https://github.com/syoyo/MMDLoader/blob/master/vmd_reader.cc
 https://github.com/59naga/vpvp-vmd/blob/master/src/reader.coffee
 
 https://github.com/errno-mmd/VMD-Lifting/blob/master/applications/VmdWriter.py
+
+https://learnmmd.com/http:/learnmmd.com/mmd-bone-reference-charts/
+
+https://gitlab.com/lox9973/VMDMotion/-/tree/master
+
+https://note.com/gabugabu_megane/n/n21702f43d165
+
+https://note.com/fantom1x/n/nca0bf10ce11f
 
 tool
 
