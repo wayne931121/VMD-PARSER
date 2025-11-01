@@ -116,6 +116,13 @@ vmdc = vmd.copy()
 vmdc["motion"] = vmdc["motion"][:32]
 vmdc["morph"] = vmdc["morph"][:32]
 
+print("vmd")
 print(vmdc)
-print(motion[:10])
+print()
+
+print("motion")
+print(motion[:6])
+print()
+
+print(ik)
 print(ik)
