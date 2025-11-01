@@ -1,18 +1,51 @@
 def vmdread(file):
     result = {}
     f = open(file,"rb")
-    header = f.read(30) ; result["headers"] = header
-    name = f.read(20) ; result["name"] = name
-    motioncount = int.from_bytes(f.read(4),"little") ; result["motioncount"] = motioncount
-    motion = f.read(motioncount*111) ; result["motion"] = motion
-    morphcount = int.from_bytes(f.read(4),"little") ; result["morphcount"] = morphcount
-    morph = f.read(morphcount*23) ; result["morph"] = morph
-    cameracount = int.from_bytes(f.read(4),"little") ; result["cameracount"] = cameracount
-    camera = f.read(cameracount*61) ; result["camera"] = camera
-    lightcount = int.from_bytes(f.read(4),"little") ; result["lightcount"] = lightcount
-    light = f.read(lightcount*61) ; result["light"] = light
-    shadowcount = int.from_bytes(f.read(4),"little") ; result["shadowcount"] = shadowcount
-    shadow = f.read(shadowcount*61) ; result["shadow"] = shadow
+
+    
+    header = f.read(30)
+    result["headers"] = header
+
+    
+    name = f.read(20)
+    result["name"] = name
+
+    
+    motioncount = int.from_bytes(f.read(4),"little")
+    result["motioncount"] = motioncount
+    
+    motion = f.read(motioncount*111)
+    result["motion"] = motion
+
+    
+    morphcount = int.from_bytes(f.read(4),"little")
+    result["morphcount"] = morphcount
+    
+    morph = f.read(morphcount*23)
+    result["morph"] = morph
+
+    
+    cameracount = int.from_bytes(f.read(4),"little")
+    result["cameracount"] = cameracount
+    
+    camera = f.read(cameracount*61)
+    result["camera"] = camera
+
+    
+    lightcount = int.from_bytes(f.read(4),"little")
+    result["lightcount"] = lightcount
+    
+    light = f.read(lightcount*61)
+    result["light"] = light
+
+    
+    shadowcount = int.from_bytes(f.read(4),"little")
+    result["shadowcount"] = shadowcount
+    
+    shadow = f.read(shadowcount*61)
+    result["shadow"] = shadow
+
+    
     ikcount = int.from_bytes(f.read(4),"little")
     ikshow = int.from_bytes(f.read(1),"little")
     iknumber = int.from_bytes(f.read(4),"little")
@@ -21,11 +54,17 @@ def vmdread(file):
     result["ikshow"] = ikshow
     result["iknumber"] = iknumber
     result["ik"] = ik
+
+    
     end = f.read(-1) ; result["end"] = end
+
+    
     try:
         result["name"] = result["name"].decode("cp932")
     except:
         pass
+    
+    
     return result
 
 import struct
@@ -42,11 +81,15 @@ def motionreader(parser):
             result[-1]["name"] = result[-1]["name"].decode("cp932")
         except:
             pass
+        
         result[-1]["frame"] = int.from_bytes(result[-1]["frame"],"little")
+        
         x,y,z = [struct.unpack('f', result[-1]["position"][i:i+4])[0] for i in range(0,12,4)]
         result[-1]["position"] = [x,y,z]
+        
         x,y,z,w = [struct.unpack('f', result[-1]["quaternion"][i:i+4])[0] for i in range(0,16,4)]
         result[-1]["quaternion"] = [x,y,z,w]
+        
     return result
 
 def ikreader(ik):
@@ -55,10 +98,12 @@ def ikreader(ik):
         result.append({})
         result[-1]["name"] = ik[k:k+20]
         result[-1]["enable"] = int.from_bytes(ik[k+20:k+21],"little")
+        
         try:
             result[-1]["name"] = result[-1]["name"].decode("cp932")
         except:
             pass
+        
     return result
 
 vmd = vmdread("13.vmd")
