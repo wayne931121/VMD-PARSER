@@ -113,8 +113,8 @@ motion = motionreader(vmd)
 ik = ikreader(vmd["ik"])
 
 vmdc = vmd.copy()
-vmdc["motion"] = vmdc["motion"][:512]
-vmdc["morph"] = vmdc["morph"][:512]
+vmdc["motion"] = vmdc["motion"][:32]
+vmdc["morph"] = vmdc["morph"][:32]
 
 print(vmdc)
 print(motion[:10])
