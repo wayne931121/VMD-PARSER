@@ -28,6 +28,7 @@ def vmdread(file):
         pass
     return result
 
+import struct
 def motionreader(parser):
     result = []
     for i in range(0,len(parser['motion']),111):
@@ -42,7 +43,7 @@ def motionreader(parser):
         except:
             pass
         result[-1]["frame"] = int.from_bytes(result[-1]["frame"],"little")
-        x,y,z = [int.from_bytes(result[-1]["position"][i:i+3],"little") for i in range(0,9,3)]
+        x,y,z = [struct.unpack('f', result[-1]["position"][i:i+4])[0] for i in range(0,12,4)]
         result[-1]["position"] = [x,y,z]
     return result
 
