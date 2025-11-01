@@ -33,6 +33,20 @@ def vmdread(file):
         pass
     end = f.read(-1) ; result["end"] = end
     return result
+
+def motionreader(parser):
+    result = []
+    for i in range(0,len(parser['motion']),111):
+        result.append({})
+        result[-1]["name"] = parser['motion'][:15]
+        result[-1]["frame"] = parser['motion'][15:19]
+        result[-1]["position"] = parser['motion'][19:31]
+        result[-1]["quaternion"] = parser['motion'][31:47]
+        result[-1]["bezier"] = parser['motion'][47:111]
+    return result
+
+vmd = vmdread("13.vmd")
+motion = motionreader(vmd)
 ```
 
 reference
