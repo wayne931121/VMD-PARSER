@@ -32,6 +32,10 @@ def vmdread(file):
         result["ik"] = "this vmd ik not for this script"
         pass
     end = f.read(-1) ; result["end"] = end
+    try:
+        result["name"] = result["name"].decode("cp932")
+    except:
+        pass
     return result
 
 def motionreader(parser):
@@ -61,3 +65,7 @@ reference
 https://github.com/syoyo/MMDLoader/blob/master/vmd_reader.cc
 
 https://github.com/59naga/vpvp-vmd/blob/master/src/reader.coffee
+
+tool:
+
+https://github.com/wayne931121/EncodingExplosion
