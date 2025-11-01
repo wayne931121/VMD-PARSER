@@ -47,15 +47,21 @@ def vmdread(file):
     shadow = f.read(shadowcount*61)
     result["shadow"] = shadow
 
+    iktotalcount = int.from_bytes(f.read(4),"little")
+    result["iktotalcount"] = iktotalcount
+
+    result["ik"] = []
     
-    ikcount = int.from_bytes(f.read(4),"little")
-    ikshow = int.from_bytes(f.read(1),"little")
-    iknumber = int.from_bytes(f.read(4),"little")
-    ik = f.read(iknumber*21)
-    result["ikcount"] = ikcount
-    result["ikshow"] = ikshow
-    result["iknumber"] = iknumber
-    result["ik"] = ik
+    for i in range(iktotalcount):
+        ikcount = int.from_bytes(f.read(4),"little")
+        ikshow = int.from_bytes(f.read(1),"little")
+        iknumber = int.from_bytes(f.read(4),"little")
+        ik = f.read(iknumber*21)
+        result["ik"].append({})
+        result["ik"][-1]["ikcount"] = ikcount
+        result["ik"][-1]["ikshow"] = ikshow
+        result["ik"][-1]["iknumber"] = iknumber
+        result["ik"][-1]["ik"] = ik
 
     
     end = f.read(-1) ; result["end"] = end
@@ -94,19 +100,28 @@ def motionreader(parser):
         
     return result
 
-def ikreader(ik):
-    result = []
-    for k in range(0,len(ik),21):
-        result.append({})
-        result[-1]["name"] = ik[k:k+20]
-        result[-1]["enable"] = int.from_bytes(ik[k+20:k+21],"little")
+def ikreader(ik_):
+    totalresult = []
+    for ik__ in ik_:
+        result = []
+        ik = ik__["ik"]
+        for k in range(0,len(ik),21):
+            result.append({})
+            result[-1]["name"] = ik[k:k+20]
+            result[-1]["enable"] = int.from_bytes(ik[k+20:k+21],"little")
+            
+            try:
+                result[-1]["name"] = result[-1]["name"].decode("cp932")
+            except:
+                pass
+        content = {}
+        content['ikcount'] = ik__['ikcount']
+        content['ikshow'] = ik__['ikshow']
+        content['iknumber'] = ik__['iknumber']
+        content['ik'] = result
+        totalresult.append(content)
         
-        try:
-            result[-1]["name"] = result[-1]["name"].decode("cp932")
-        except:
-            pass
-        
-    return result
+    return totalresult
 
 vmd = vmdread("b.vmd")
 motion = motionreader(vmd)
