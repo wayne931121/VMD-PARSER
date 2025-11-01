@@ -21,7 +21,8 @@ print("motion")
 print(motion[:6])
 print()
 
-print(ik)
+print("ik")
 
 print(ik)
+
 
