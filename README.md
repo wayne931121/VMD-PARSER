@@ -43,6 +43,13 @@ def motionreader(parser):
         result[-1]["position"] = parser['motion'][i+19:i+31]
         result[-1]["quaternion"] = parser['motion'][i+31:i+47]
         result[-1]["bezier"] = parser['motion'][i+47:i+111]
+        try:
+            result[-1]["name"] = result[-1]["name"].decode("cp932")
+        except:
+            pass
+        result[-1]["frame"] = int.from_bytes(result[-1]["frame"],"little")
+        x,y,z = [int.from_bytes(result[-1]["position"][i:i+3],"little") for i in range(0,9,3)]
+        result[-1]["position"] = [x,y,z]
     return result
 
 vmd = vmdread("13.vmd")
