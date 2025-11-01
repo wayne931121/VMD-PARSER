@@ -66,6 +66,6 @@ https://github.com/syoyo/MMDLoader/blob/master/vmd_reader.cc
 
 https://github.com/59naga/vpvp-vmd/blob/master/src/reader.coffee
 
-tool:
+tool
 
 https://github.com/wayne931121/EncodingExplosion
