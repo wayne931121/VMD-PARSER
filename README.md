@@ -24,7 +24,13 @@ def vmdread(file):
         iknumber = 0
     ikbyte= (9+21*iknumber)
     result["ikcount"] = ikcount
-    ik = f.read(ikcount*ikbyte) ; result["ik"] = ik
+    result["ikbyte"] = ikbyte
+    result["iknumber"] = iknumber
+    try:
+        ik = f.read(ikcount*ikbyte) ; result["ik"] = ik
+    except MemoryError:
+        result["ik"] = "this vmd ik not for this script"
+        pass
     end = f.read(-1) ; result["end"] = end
     return result
 ```
