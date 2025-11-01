@@ -46,8 +46,22 @@ def motionreader(parser):
         result[-1]["position"] = [x,y,z]
     return result
 
+def ikreader(ik):
+    result = []
+    for k in range(0,len(ik),21):
+        result.append({})
+        result[-1]["name"] = ik[k:k+20]
+        result[-1]["enable"] = int.from_bytes(ik[k+20:k+21],"little")
+        try:
+            result[-1]["name"] = result[-1]["name"].decode("cp932")
+        except:
+            pass
+    return result
+
 vmd = vmdread("13.vmd")
 motion = motionreader(vmd)
+ik = ikreader(vmd["ik"])
 
 print(vmd)
 print(motion)
+print(ik)
